@@ -147,7 +147,7 @@ st.header("Análise Financeira")
 
 df_gastos = df_total_ajudas_filtrado[df_total_ajudas_filtrado['valor'] > 0]
 if not df_gastos.empty:
-    st.subheader("Valor Gasto por Tipo de Assistência")
+    st.subheader("Valor Investido por Tipo de Assistência")
     df_gastos_agrupado = df_gastos.groupby('tipo_ajuda')['valor'].sum().sort_values(ascending=False).reset_index()
     options_gastos_vertical = {
         "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}},
@@ -163,7 +163,7 @@ else:
 
 # --- GRÁFICO DE GASTOS COM CREDCIADÃO ---
 st.markdown("---")
-st.subheader("Gastos com CredCidadão por Município")
+st.subheader("Investimento com CredCidadão por Município")
 
 df_credcidadao = df_total_ajudas_filtrado[
     (df_total_ajudas_filtrado['tipo_ajuda'] == 'CredCidadão') &
