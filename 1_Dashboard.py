@@ -49,7 +49,7 @@ else:
 df_total_ajudas = pd.concat([df_ajuda_unified, df_ajuda_extra_unified], ignore_index=True)
 
 # --- Título e Filtros ---
-st.title('Dashboard de Solicitações de Ajuda 📊')
+st.title('Dashboard de Solicitações de Assistência 📊')
 st.sidebar.header('Filtros')
 
 if df_ajuda.empty and df_total_ajudas.empty:
@@ -98,11 +98,11 @@ with col1:
 
 with col2:
     valor_total_solicitado = df_total_ajudas_filtrado['valor'].sum() if not df_total_ajudas_filtrado.empty else 0
-    st.metric(label="Valor Total de Ajuda", value=f"R$ {valor_total_solicitado:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
+    st.metric(label="Valor Total de Assistência", value=f"R$ {valor_total_solicitado:,.2f}".replace(",", "X").replace(".", ",").replace("X", "."))
 
 with col3:
     quantidade_total_itens = df_total_ajudas_filtrado['quantidade'].sum() if not df_total_ajudas_filtrado.empty else 0
-    st.metric(label="Quantidade Total de Itens", value=int(quantidade_total_itens))
+    st.metric(label="Quantidade Total de Assistência", value=int(quantidade_total_itens))
 
 # --- Gráficos com ECharts ---
 st.markdown("---")
@@ -134,7 +134,7 @@ with col_grafico2:
         options_pie = {
             "tooltip": {"trigger": "item"},
             "legend": {"orient": "vertical", "left": "left"},
-            "series": [{"name": "Serviços Prestados", "type": "pie", "radius": "50%", "center": ['65%', '50%'], "data": data_pie, 
+            "series": [{"name": "Serviços Prestados", "type": "pie", "radius": "50%", "center": ['50%', '70%'], "data": data_pie, 
                         "emphasis": {"itemStyle": {"shadowBlur": 10, "shadowOffsetX": 0, "shadowColor": "rgba(0, 0, 0, 0.5)"}}}],
         }
         st_echarts(options=options_pie, height="400px")
@@ -178,7 +178,7 @@ if not df_credcidadao.empty:
         "xAxis": {"type": "category", "data": df_gastos_credcidadao['municipio'].tolist(), "axisLabel": {"interval": 0, "rotate": 45}},
         "yAxis": {"type": "value", "axisLabel": {"formatter": "R$ {value}"}},
         "series": [{"name": "Valor Gasto (R$)", "type": "bar", "data": df_gastos_credcidadao['valor'].tolist(),
-                    "label": {"show": True, "position": "top", "formatter": "R$ {c:,.2f}"}}],
+                    "label": {"show": True, "position": "top", "formatter": ""}}],
     }
     st_echarts(options=options_credcidadao, height="500px")
 else:
